@@ -1,38 +1,153 @@
-.App {
-    text-align: center;
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* Custom scrollbar */
+::-webkit-scrollbar {
+  width: 8px;
 }
 
-.App-logo {
-    height: 40vmin;
-    pointer-events: none;
+::-webkit-scrollbar-track {
+  background: #1e293b;
 }
 
-@media (prefers-reduced-motion: no-preference) {
-    .App-logo {
-        animation: App-logo-spin infinite 20s linear;
-    }
+::-webkit-scrollbar-thumb {
+  background: #14b8a6;
+  border-radius: 4px;
 }
 
-.App-header {
-    background-color: #0f0f10;
-    min-height: 100vh;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    font-size: calc(10px + 2vmin);
-    color: white;
+::-webkit-scrollbar-thumb:hover {
+  background: #0891b2;
 }
 
-.App-link {
-    color: #61dafb;
+/* Smooth scrolling */
+html {
+  scroll-behavior: smooth;
 }
 
-@keyframes App-logo-spin {
-    from {
-        transform: rotate(0deg);
-    }
-    to {
-        transform: rotate(360deg);
-    }
+/* Custom animations */
+@keyframes gradient-shift {
+  0% {
+    background-position: 0% 50%;
+  }
+  50% {
+    background-position: 100% 50%;
+  }
+  100% {
+    background-position: 0% 50%;
+  }
+}
+
+.gradient-animate {
+  background-size: 200% 200%;
+  animation: gradient-shift 3s ease infinite;
+}
+
+/* Chart container styles */
+.chart-container {
+  position: relative;
+  height: 400px;
+  width: 100%;
+}
+
+/* Custom button hover effects */
+.btn-primary {
+  @apply bg-gradient-to-r from-blue-600 to-teal-600 hover:from-blue-700 hover:to-teal-700 transition-all duration-300 transform hover:scale-105;
+}
+
+.btn-secondary {
+  @apply border-2 border-teal-500 hover:bg-teal-500/10 transition-all duration-300 transform hover:scale-105;
+}
+
+/* Card hover effects */
+.card-hover {
+  @apply transition-all duration-300 hover:shadow-xl hover:shadow-teal-500/10 hover:scale-105;
+}
+
+/* Text gradient effects */
+.text-gradient {
+  @apply bg-gradient-to-r from-blue-400 to-teal-400 bg-clip-text text-transparent;
+}
+
+/* Custom loading animation */
+.loading-spinner {
+  @apply animate-spin border-4 border-teal-500 border-t-transparent rounded-full;
+}
+
+/* Responsive chart containers */
+@media (max-width: 768px) {
+  .chart-container {
+    height: 300px;
+  }
+}
+
+/* Chart.js custom styles */
+.chartjs-tooltip {
+  background: rgba(15, 23, 42, 0.9) !important;
+  border: 1px solid rgba(20, 184, 166, 0.3) !important;
+  border-radius: 8px !important;
+  color: white !important;
+}
+
+/* Performance optimizations */
+.gpu-accelerated {
+  transform: translateZ(0);
+  backface-visibility: hidden;
+  perspective: 1000px;
+}
+
+/* Custom focus styles */
+button:focus,
+input:focus {
+  outline: 2px solid #14b8a6;
+  outline-offset: 2px;
+}
+
+/* Animation delays for staggered effects */
+.delay-100 { animation-delay: 100ms; }
+.delay-200 { animation-delay: 200ms; }
+.delay-300 { animation-delay: 300ms; }
+.delay-400 { animation-delay: 400ms; }
+.delay-500 { animation-delay: 500ms; }
+
+/* Custom backdrop blur effects */
+.backdrop-blur-custom {
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+}
+
+/* Enhanced glassmorphism effects */
+.glass-effect {
+  background: rgba(15, 23, 42, 0.3);
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+/* Improved accessibility */
+@media (prefers-reduced-motion: reduce) {
+  * {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
+}
+
+/* Dark mode optimizations */
+@media (prefers-color-scheme: dark) {
+  .chart-container {
+    filter: brightness(0.9);
+  }
+}
+
+/* Print styles */
+@media print {
+  .no-print {
+    display: none !important;
+  }
+  
+  body {
+    background: white !important;
+    color: black !important;
+  }
 }
